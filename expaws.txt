@@ -1,0 +1,362 @@
+--------------------------EXP 1 --------------------------------------
+nano exp1.py
+print("Welcome to Cloud Shell XYZ !")
+Ctrl + X -> Y -> Enter
+python3 exp1.py
+
+-------------------------EXP 2-------------------------------------
+
+mkdir XYZ-Dev
+cd XYZ-Dev
+git init
+echo "Hello XYZ 1" > hello.txt
+git add hello.txt
+git remote add origin https://github.com/XYZ/PRACTICALEXAM.git
+git branch -M main
+git pull origin main --allow-unrelated-histories
+git add .
+git commit -m "Merged master changes into main"
+git push -u origin main
+
+
+-------------------------EXP 3----------------------
+nano hello.sh
+echo "Hello, Welcome to Shell Scripting!"
+Ctrl + X -> Y -> Enter
+chmod +x hello.sh
+./hello.sh
+
+
+ nano calculator.sh
+#!/bin/bash
+echo "Enter two numbers:"
+read a
+read b
+echo "Sum = $(($a + $b))"
+Ctrl + X -> Y -> Enter
+chmod +x calculator.sh
+
+ubuntu@ip-172-41-18-269:~$ ./calculator.sh
+Enter two numbers:
+11
+2
+Sum = 13
+
+nano backup.sh
+#!/bin/bash
+cp myfile.txt myfile_backup.txt
+echo "Backup Created !"
+Ctrl + X -> Y -> Enter
+nano myfile.txt
+echo "Hello"
+Ctrl + X -> Y -> Enter
+chmod +x backup.sh
+./backup.sh
+cat backup.sh
+ls
+cat  myfile_backup.txt
+
+---------------------------EXP 4-------------------------------
+
+Part A:
+sudo apt-get update
+sudo apt-get install docker.io
+systemctl status docker
+sudo usermod -aG docker $USER
+sudo reboot
+docker ps
+docker --version
+docker pull ubuntu
+docker run -it ubuntu
+
+root@bec54a755157:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@bec54a755157:/# pwd
+/
+root@bec54a755157:/# echo "Hello from inside the container"
+Hello from inside the container
+root@bec54a755157:/# exit
+
+docker images
+
+Part B:
+docker run -d -p 8080:80 nginx
+docker ps
+docker stop fcc30433abd6
+docker rm fcc30433abd6
+
+----------------------------------EXP 5-------------------------------------------------------
+
+Part A:
+sudo apt update
+sudo apt install htop
+htop
+
+1. Observe CPU, memory, tasks, and PIDs.
+2. Use F3 to search, F9 to kill a process , Arrow to navigate.
+3. Quit: q
+
+Part B:
+sudo apt install net-tools
+netstat -tuln
+netstat -tulpn
+netstat -ant
+netstat -r
+
+
+Procedure:
+Part A: Using htop
+1. Install: sudo apt install htop
+2. Run: htop
+3. Observe CPU, memory, tasks, and PIDs.
+4. Use F3 to search, F9 to kill a process.
+5. Quit: q
+Part B: Using netstat
+1. Install: sudo apt install net-tools
+2. Show open ports: netstat -tuln
+3. Show listening services: netstat -tulpn
+4. Show active connections: netstat -ant
+5. Show routing table: netstat -r
+
+Expected Output:
+- htop displays system resource usage.
+
+- netstat shows network connections and ports.
+
+--------------------------------------exp 6-----------------------------
+Procedure:
+Part A: Python Script
+1. Create myscript.py:
+
+from datetime import datetime
+
+with open("log.txt", "a") as f:
+    f.write(f"Script ran at: {datetime.now()}\n")
+2. Run: python3 myscript.py
+3: Check if the log file is created
+cat log.txt
+
+
+Part B: Cron Job
+1.Open crontab for editing
+crontab -e
+
+2.Add this line at the end  ( use pwd & note down the path )
+
+* * * * * /usr/bin/python3 /full/path/to/myscript.py - 
+Replace /full/path/to/myscript.py with the absolute path of your script.
+Example: /home/XYZ/Experiment6/myscript.py
+
+3.Save and exit
+
+4.Wait a few minutes
+
+5.Check log.txt
+cat /full/path/to/log.txt
+
+---------------------------EXP07---------------------------
+
+
+Exp 7
+
+1. Search aws.amazon.com
+
+
+2. If not a user → enter email, password, and code
+
+
+3. Search Amazon S3
+
+
+4. Create bucket
+
+
+5. Name: om-buckets
+
+
+6. Search Lambda → Functions
+
+
+7. Create function
+
+Runtime: Python 3.9 (or Node.js)
+
+Function name: om-lambda
+
+Click on Create function
+
+
+
+8. In the new panel → + Add trigger
+
+
+9. Select source → S3 (search)
+
+Event type → ☑ PUT
+
+Bucket name → om-buckets
+
+Click Add
+
+
+
+10. Code →
+
+
+
+Modify the code (change a sentence in code)
+
+Click Deploy button
+
+Message: Successfully updated
+
+
+11. Go to Lambda → Dashboard → Shows Lambda function
+
+
+12. Search Amazon S3 → Open bucket (created earlier)
+
+
+13. Upload any file (Add files) from your local system → Upload successfully
+
+
+14. Search CloudWatch → Logs
+
+
+
+Go to Log groups
+
+Click on /aws/lambda/om-lambda
+
+----------------------------------------EXP 8-----------------------------
+*Create GitHub Repository*
+Go to GitHub
+ and log in.
+Click New repository.
+Name it: ci-cd-demo
+Optional: Add a README
+Click Create repository
+
+# Step 1: Clone GitHub repository
+git clone https://github.com/<your-username>/ci-cd-demo.git   # Replace with your username
+cd ci-cd-demo
+
+# Step 2: Create app.py (simple Python app)
+echo 'print("Hello! This is a simple app.")' > app.py
+
+# Step 3: Create deploy.sh (CI/CD simulation script)
+echo '#!/bin/bash
+echo "Building the app..."        # Simulate build step
+sleep 1
+echo "Running tests..."           # Simulate test step
+sleep 1
+echo "Deploying the app..."       # Simulate deploy step
+sleep 1
+echo "CI/CD workflow completed successfully!"' > deploy.sh
+
+# Step 4: Make deploy.sh executable
+chmod +x deploy.sh
+
+# Step 5: Run the script
+./deploy.sh
+
+# Expected Output:
+# Building the app...
+# Running tests...
+# Deploying the app...
+# CI/CD workflow completed successfully!
+
+# Step 6: Push changes to GitHub
+git add app.py deploy.sh           # Stage files
+git commit -m "Add simple CI/CD workflow"   # Commit with message
+git push origin main               # Push to GitHub
+
+# Optional steps:
+git remote set-url origin https://github.com/XYZ/CI-CD_DEMO.git
+git remoteadd origin https://github.com/XYZ/CI-CD_DEMO.git
+git push -u main
+git push -u origin main
+git pull origin main --rebase
+git push -u origin main
+
+------------------------------------EXP 9-----------------------------------------
+Procedure:
+Part A: ping
+1. Run: ping google.com
+2. Observe response time, packet loss.
+Part B: traceroute
+1. Install: sudo apt install traceroute
+2. Run: traceroute google.com
+3. Observe hops and latency.
+Expected Output:
+- ping shows latency and packet loss.
+
+- traceroute shows path to the host.
+
+-------------------------------EXp10--------------------------------
+
+
+Bucket > Create Bucket > index.html code tak > file upload kr > Permission > Bucket Policy (edit) =code > CORS(edit) code > Block Public in permission > Properties Scroll Down > Static Website Hosting(Enable) > index.html link vr click kr
+
+
+index.html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Print 100</title>
+</head>
+<body>
+  <h1>Short HTML Demo</h1>
+ 
+</body>
+</html>
+
+
+Bucket policy 
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::sahil-bucket-10/*"
+        }
+    ]
+}
+
+CORS
+[
+    {
+        "AllowedHeaders": [
+            "*"
+        ],
+        "AllowedMethods": [
+            "GET"
+        ],
+        "AllowedOrigins": [
+            "*"
+        ],
+        "ExposeHeaders": []
+    }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
